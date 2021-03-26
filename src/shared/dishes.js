@@ -1,3 +1,5 @@
+// shared data across Components
+
 export const DISHES =
     [
         {
