@@ -1,3 +1,9 @@
+
+// This Component will render the Selected Dishes Details under the Menu Items  
+// - get the dishes selected as a props from parent componets (Menu Component)
+// - loop throw this dish object and render dish details and comments
+
+
 import React,{Component} from 'react';
 import { Card, CardImg, CardText, CardBody,CardTitle } from 'reactstrap';
 
@@ -11,6 +17,10 @@ class Dishdetail extends Component{
 
 
         renderDish(dish){
+            // render the dish object as a Card 
+            // check if there is a dish or not 
+            // if not then render an empty div
+            if(dish !=null){
             return(
                 <>
                     <Card>
@@ -23,8 +33,21 @@ class Dishdetail extends Component{
                 </>
             );
         }
+        else{
+        return(
+            <div>
 
-        renderComments(dishComments){
+            </div>
+        );}
+    }
+        renderComments(dish){
+
+            // render the dish object comments as a List 
+            // check if there is a dish or not 
+            // if not then render an empty div
+
+                if(dish != null){
+                const dishComments = dish.comments;
                 const comments = dishComments.map( (dish)=>{
                     
                     return(
@@ -47,16 +70,25 @@ class Dishdetail extends Component{
             );
         }
 
-        render(){
+        else{
+            return(
+                <div></div>
+                );
+        }
+    }
 
-            const dish = this.props.selectedDish;
+        render(){
+            // render the dish object that come from presentional Component as a props 
+            // Note that we applied the Bootstrap so we render the deatils inside the div row and 
+            // the container div is located on Menu Compnenet
+            const dish = this.props.dish;
             return(
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
                         {this.renderDish(dish)}
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        {this.renderComments(dish.comments)}
+                        {this.renderComments(dish)}
                     </div>
                 </div>
             );
