@@ -4,20 +4,11 @@
 // - loop throw this dish object and render dish details and comments
 
 
-import React,{Component} from 'react';
+import React  from 'react';
 import { Card, CardImg, CardText, CardBody,CardTitle } from 'reactstrap';
 
-class Dishdetail extends Component{
 
-    componentDidMount(){
-        console.log('Dishdetail component componentDidMount invoked');
-    }
-
-    componentDidUpdate(){
-        console.log('Dishdetail component componentDidUpdate invoked');
-    }
-
-        renderDish(dish){
+function RenderDish({dish}){
             // render the dish object as a Card 
             // check if there is a dish or not 
             // if not then render an empty div
@@ -41,7 +32,7 @@ class Dishdetail extends Component{
             </div>
         );}
     }
-        renderComments(dish){
+    function RenderComments({dish}){
 
             // render the dish object comments as a List 
             // check if there is a dish or not 
@@ -78,26 +69,25 @@ class Dishdetail extends Component{
         }
     }
 
-        render(){
+        const Dishdetail =(props) => {
 
             console.log('Dishdetail component render invoked');
 
             // render the dish object that come from presentional Component as a props 
             // Note that we applied the Bootstrap so we render the deatils inside the div row and 
             // the container div is located on Menu Compnenet
-            const dish = this.props.dish;
+            
             return(
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
-                        {this.renderDish(dish)}
+                        <RenderDish dish={props.dish}/>
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        {this.renderComments(dish)}
+                        <RenderComments dish={props.dish}/>
                     </div>
                 </div>
             );
         }
-}
 
 
 export default Dishdetail;

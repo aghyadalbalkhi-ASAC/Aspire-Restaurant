@@ -5,36 +5,33 @@
 // - use the dish detail componet to render a specifi dish (the selected one)
 // - if the no dish select it will render a empty div 
 
-import React,{Component} from 'react';
-import {Media} from 'reactstrap';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,CardTitle } from 'reactstrap';
+import React from 'react';
+import { Card, CardImg, CardImgOverlay,CardTitle } from 'reactstrap';
 
 
+// This is a Function Component and it will render a Card Item
+function RenderMenuItem({dish,onClick}) {
 
-class Menu extends Component {
+    return(
+        <Card onClick={()=> onClick(dish.id)}>  {/* if Card selected change the value of DishSelect */}
+            <CardImg width="100%" src={dish.image} alt={dish.name} />
+            <CardImgOverlay>
+                <CardTitle>{dish.name}</CardTitle>
+            </CardImgOverlay>
+        </Card>
 
-    constructor (props){
-        super(props);
-        console.log('Menu component constructor invoked');
-    }
+    );  
+} 
+// This is a Function Component too. and it will render a Menu Items Card
 
-    componentDidMount(){
-        console.log('Menu component componentDidMount invoked');
-    }
-
-    render(){
+    const Menu = (props) => {
         console.log('Menu component render invoked');
 
         // loop throw the dishes array and render every dish as a Card Component 
-        const menu =this.props.dishes.map( (dish) => {
+        const menu =props.dishes.map( (dish) => {
             return(
                 <div key ={dish.id} className="col-12 col-md-5 m-1">
-                    <Card onClick={()=> this.props.onClick(dish.id)}>  {/* if Card selected change the value of DishSelect */}
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
-                        <CardImgOverlay>
-                            <CardTitle>{dish.name}</CardTitle>
-                        </CardImgOverlay>
-                    </Card>
+                    <RenderMenuItem dish={dish} onClick={props.onClick} />
                 </div>
             );
         });
@@ -47,7 +44,7 @@ class Menu extends Component {
             </div>
             </>
         );
+
     }
-}
 
 export default Menu ;
