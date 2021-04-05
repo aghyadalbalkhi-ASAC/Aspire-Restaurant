@@ -15,9 +15,15 @@ class Menu extends Component {
 
     constructor (props){
         super(props);
+        console.log('Menu component constructor invoked');
+    }
+
+    componentDidMount(){
+        console.log('Menu component componentDidMount invoked');
     }
 
     render(){
+        console.log('Menu component render invoked');
 
         // loop throw the dishes array and render every dish as a Card Component 
         const menu =this.props.dishes.map( (dish) => {

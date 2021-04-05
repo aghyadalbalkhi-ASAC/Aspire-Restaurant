@@ -9,12 +9,13 @@ import { Card, CardImg, CardText, CardBody,CardTitle } from 'reactstrap';
 
 class Dishdetail extends Component{
 
-        constructor(props){
-            super(props);
-            this.state ={
-            };
-        }
+    componentDidMount(){
+        console.log('Dishdetail component componentDidMount invoked');
+    }
 
+    componentDidUpdate(){
+        console.log('Dishdetail component componentDidUpdate invoked');
+    }
 
         renderDish(dish){
             // render the dish object as a Card 
@@ -78,6 +79,9 @@ class Dishdetail extends Component{
     }
 
         render(){
+
+            console.log('Dishdetail component render invoked');
+
             // render the dish object that come from presentional Component as a props 
             // Note that we applied the Bootstrap so we render the deatils inside the div row and 
             // the container div is located on Menu Compnenet
