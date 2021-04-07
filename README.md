@@ -1,5 +1,7 @@
 # React Learning journey 
 
+* [The Demo URl](https://aspire-restaurant.vercel.app/)
+
 > Topics Coverd
 
 - **Get start with react and create React App** `create-react-app confusion`.
@@ -90,7 +92,7 @@
 
      # This is a App Main
 
-                <Switch>
+                <Switch>                        // it stop searching when path matching found 
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
                     <Redirect to="/home" />
@@ -100,14 +102,40 @@
     # component but the Switch andd Route should be inside BrowserRouter like this
        
         <BrowserRouter>
-                <Switch>                // it stop searching when path matching found 
+                <Switch>                
                     <Route path='/home' component={HomePage} />
-                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />  
                     <Redirect to="/home" />
                 </Switch> 
         </BrowserRouter>
 
     ```
+
+- **React Router: Parameters**
+    *path aslo can carry a Parameters*
+    *Parameters spcified in the path  specification as a token*
+
+    ```
+        /menu/42
+        /menu/:id      - > id is the Token
+
+         # So, the key will be id and value will be 42.
+
+    ```
+
+    *Router Parameters can be spcified using `link`* === *The same can be use with `NavLink`*
+
+    `<Link to ={`/menu/${dish.id}`}`
+
+    **Note :** *when this happen route component passes `three` pass props to the component which it is rendered*
+
+    - match - > Match is the one that carries the route parameters inside it as its own properties.
+    - location -> where you are in the URL location.
+    - history  -> will allow you to go back.
+
+    *This `match object` enables us to determine a path .So, when you specify various route parameters, these become available through the match object as params,*
+
+    *match.params, you'll be able to get access to all the params, as a `key value pair` .So, param is associated with a key value pitch*
 
 - **Single Page Applications**
 *A single-page application is a web application or a website that fits into a single page.*
@@ -118,3 +146,10 @@
     
 
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
+
+
+
+## Contact Info : 
+**Please Feel Free To Contact Me When You Need help ^_^**
+* [www.facebook.com/aghyadalbalkhi](www.facebook.com/aghyadalbalkhi)
+* Email : aghyadalbalkhi@gmail.com
