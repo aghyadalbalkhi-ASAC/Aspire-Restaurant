@@ -69,4 +69,52 @@
  
 - **React Router**
 
+    *Installing and Configuring React Router*
+
+    `npm install react-router-dom --save`
+
+    *Configuring React app by import BrowserRouter in App.js*
+
+    `import { BrowserRouter } from 'react-router-dom';`
+
+    **Note** All Router should be inside BrowserRouter Component so its doesnt matter if the BrowserRouter and Routers in the same Component (Page) of in another one (must in Parent Componets so all the routers will be inside parent)
+
+    ```
+     # This is a App Componet 
+
+        <BrowserRouter>
+            <div className="App">
+              <Main />
+            </div>
+        </BrowserRouter>
+
+     # This is a App Main
+
+                <Switch>
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+                    <Redirect to="/home" />
+                </Switch> 
+
+    # So the Switch and Routes are inside the BrowserRouter component and we can put BrowserRouter in Main
+    # component but the Switch andd Route should be inside BrowserRouter like this
+       
+        <BrowserRouter>
+                <Switch>                // it stop searching when path matching found 
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+                    <Redirect to="/home" />
+                </Switch> 
+        </BrowserRouter>
+
+    ```
+
+- **Single Page Applications**
+*A single-page application is a web application or a website that fits into a single page.*
+    - No need to reload the entire page every single time a user interacts with the application. 
+    - The UX is more like a desktop or a native application.
+    - Most of the resources required for your application are downloaded at the first instance itself by the first page load
+    - only parts of the page are redrawn based upon how the user interaction happens without requiring a full server roundtrip
+    
+
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->

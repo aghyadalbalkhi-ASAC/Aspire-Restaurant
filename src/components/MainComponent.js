@@ -5,10 +5,18 @@
 import React,{ Component } from 'react';        //Bootstrap Moduel 
 import Menu from './MenuComponent';                     // Presentional Component
 import Dishdetail from './DishdetailComponent'          // Presentional Component
+import Contact from './ContactComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 // Import Dishes Data from dishes Component 
 import { DISHES } from '../shared/dishes';              // Data Shared Component
+import { COMMENTS } from '../shared/comments';
+import { PROMOTIONS } from '../shared/promotions';
+import { LEADERS } from '../shared/leaders';
+
+import Home from './HomeComponent';
+
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 class Main extends Component {
 
@@ -16,40 +24,35 @@ class Main extends Component {
         super(props);
         this.state={
             dishes:DISHES,                  // shared Data
-            selectedDish:null               // its for lifting Up from Child Component by passing Event as props
+            comments: COMMENTS,
+            promotions: PROMOTIONS,
+            leaders: LEADERS
         };
     }
 
-    onDishSelect(dishId){
-// its called when card selected and change the value of selectedDish on stat to the dish ID which select
-// if the state change then the component will be re-render again 
-        this.setState({selectedDish:dishId})
-}
-
     render(){
+
+        
+    const HomePage = () => {
+        return(
+            <Home
+                dish={this.state.dishes.filter((dish) => dish.featured)[0]}
+                promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+                leader={this.state.leaders.filter((leader) => leader.featured)[0]}
+            />
+        );
+    }
 
         return (
             <>
                 <div>
-
                 <Header />
-            
-                {/* Render The Menu  Component and pass the dishes array as a props*/}
-                {/* passing a fuctional varible as a props [onClick] and use this varible on child on
-                click event to run a function on parent component and pass the data as a parameter
-                of this function to change the stat of parenet component  -- its a trick*/}
-
-                {/* To understand this we can change the name of onClick Props for anything like 'vv' and
-                use 'vv' props in child and it will work perfect */}
-                
-                <Menu dishes={this.state.dishes}
-                onClick={(dishId)=> this.onDishSelect(dishId)} />
-
-                {/* its responsble of rendering the dish selected Details and it pass the selected dish as
-                props by using filter to pick the specifi dish using the dish id that came from
-                onDishSelect fucttion onClick Event*/}
-                
-                <Dishdetail dish={this.state.dishes.filter((dish)=> dish.id === this.state.selectedDish)[0]} />
+                <Switch>
+                    <Route path='/home' component={HomePage} />             
+                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+                    <Route exact path='/contactus' component={Contact}/>
+                    <Redirect to="/home" />
+                </Switch>
                 <Footer />
                 </div>
             </>
