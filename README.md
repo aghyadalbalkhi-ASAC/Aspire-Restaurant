@@ -143,6 +143,10 @@
     - The UX is more like a desktop or a native application.
     - Most of the resources required for your application are downloaded at the first instance itself by the first page load
     - only parts of the page are redrawn based upon how the user interaction happens without requiring a full server roundtrip
+
+
+- **Controlled Forms**
+
     
 
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
