@@ -5,6 +5,16 @@
 > Topics Coverd
 
 - **Get start with react and create React App** `create-react-app confusion`.
+    * To use npm insted of yarn 
+    ```
+        You can either
+
+        1) Remove yarn.lock, and running npm i,
+
+        or
+
+        2) Run create-react-app app --use-npm
+    ```
 
 - **Introduction to JSX**
 
