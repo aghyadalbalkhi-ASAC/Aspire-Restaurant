@@ -157,8 +157,115 @@
 
 - **Controlled Forms**
 
-    
+[Controlled vs UnControlled](https://medium.com/swlh/controlled-and-uncontrolled-components-in-react-e078bb1f7efd)
 
+`in a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself`
+
+- *forms are a very standard approach for users to input data for your application*
+-   *A way of setting up forms in your React Application whereby your form `information is directly tied into the state of your React component that is hosting the form`*
+-  *any changes that you make to your form imports will be immediately reflected into the state*
+
+- *every one of these form elements in HTML maintain their own state within DOM. And then they will update it based on user input*
+
+- *we want to be able to connect that into our React components state, so that any changes to a box will be immediately reflected into React component state.*
+
+- *with the control component, every state mutation, anytime you change any of the state, it will have to be reflected into the state of your React component. So you need appropriate handler functions that will enable change*.
+
+- *if there is any change in a box, then that change should be immediately reflective to the state of your React component*
+
+**To deal with component we need to import `Button, Form, FormGroup,Label, Input and Col.` from reactstrap.**
+- ->> This will be in Class Component Coz we need the state of the component to store the state of form 
+
+- ->> define the state which reflects the information from the form that we are going to create for example
+
+```
+this.state = {
+            firstname: '',
+            lastname: '',
+            telnum: '',
+            email: ''
+
+            }
+
+```
+*so, with this, we have set up all the properties within our state that can then be linked to our form*
+
+- to `create a form`, we will start off by defining a form within this div here, and in this `form`
+
+- we will use `FormGroup` that allows us to define that as a row so this is one row of the form and an elements like Label or input will be inside this FormGroup .So, this FormGroup row allows us to use bootstrap's grid inside the form to lay out the various form elements. 
+
+- -->> implement two different handlers that will take care of handling this Form `handleInputChange` which will receive the event as a parameter and `handleSubmit` which also receives the event as a parameter. So, when you click on the Submit Button, the handler Submit should the called.
+
+- The default behavior when you submit a Form in any browser is to go to the next page. So, we will prevent that from happening. So, we will say the `event.preventDefault` behavior.
+
+- in order to make this handleSubmit and handleInputChange methods available for use like the way we did with the form, we need to `bind` `this` in the constructor. 
+
+```
+this.handleInputChange = this.handleInputChange.bind(this);
+this.handleSubmit = this.handleSubmit.bind(this);
+
+```
+-  the handleInputChange method, we'll make sure that this is invoked upon any change to any input value in our form. When this is invoked, then we will retrieve the target input from the event that has just been parsed in. So this event will carry which particular input has been changed.
+
+```
+   handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+            [name]: value
+        });
+    }
+
+```
+**make sure that you have value Attribute in input element and the defualt value is the state value that reflect this input element**
+
+```
+                            <FormGroup row>
+                                <Label htmlFor="lastname" md={2}>Last Name</Label>
+                                <Col md={10}>
+                                    <Input type="text" id="lastname" name="lastname"
+                                        placeholder="Last Name"
+                                        value={this.state.lastname}
+                                        onChange={this.handleInputChange} />
+                                    <FormFeedback>{errors.lastname}</FormFeedback>
+                                </Col>
+                            </FormGroup>
+
+```
+
+- **Uncontrolled Components**
+
+*Sometimes you will wish to have a very simple form with a very limited amount of interaction of that with your React component. In that case an uncontrolled form is a much easier way of setting up forms within your React application*
+
+*This type of component is best suited when you have a simple form where you need to get the value of the inputs one time (e.g. on submit) or that doesn’t perform any kind of UI change when the value of the inputs changes.*
+
+**Use Cases**
+
+    - Creating inputs on the fly
+    - Enforcing formats (phone numbers, credit cards, etc.)
+    - Updating the UI when the value of the inputs changes like showing errors if the input value is wrong as the user is typing, disabling the submit button if the values have errors, etc.
+
+- Now every, DOM form element has a `ref` associated with it, from which you can easily use thatch to extract their HTML form data into your application. 
+
+**this approach of using uncontrolled forms is a lot more easier in situations when you are mixing your React application code with non-React code.**
+
+- > we will use uncontroller form to setup a login form in header component
+    - first step we will create a `modal` using the reactstrap `modal component`. 
+    - Import `Modal,ModalHeader,ModalBody` from reactstrap
+    - setup your modal and put your form inside ModalBody
+    - setup the `toggleModal` inside Modal and ModalHeader and set a defualt `isModalOpen: false` in component state 
+    - define `toggleModal function ` to setState of `isModalOpen` when click modal 
+
+--------------------------------------------------------------
+
+**Introduction to Redux**
+
+- Install and Configure Redux in your application
+- Enable your React app to make use of Redux
+
+- ** MVC The Model-View-Controller Framework**
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
 
 

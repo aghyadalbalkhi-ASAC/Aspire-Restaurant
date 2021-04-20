@@ -8,6 +8,7 @@ import Dishdetail from './DishdetailComponent'          // Presentional Componen
 import Contact from './ContactComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+import About from './AboutComponent';
 // Import Dishes Data from dishes Component 
 import { DISHES } from '../shared/dishes';              // Data Shared Component
 import { COMMENTS } from '../shared/comments';
@@ -52,7 +53,7 @@ class Main extends Component {
         );
 
     };
-
+        console.log('main',this.state.leaders)
         return (
             <>
                 <div>
@@ -62,6 +63,7 @@ class Main extends Component {
                     <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
                     <Route path='/menu/:dishId' component = {DishWithId} />
                     <Route exact path='/contactus' component={Contact}/>
+                    <Route exact path='/aboutus' component={()=> <About leaders={this.state.leaders} />}/>
                     <Redirect to="/home" />
                 </Switch>
                 <Footer />
