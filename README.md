@@ -265,7 +265,87 @@ this.handleSubmit = this.handleSubmit.bind(this);
 - Install and Configure Redux in your application
 - Enable your React app to make use of Redux
 
-- ** MVC The Model-View-Controller Framework**
+- **The Flux Architecture**
+*just like MVC, it is a software engineering pattern. It is a suggestion idea or a pattern for you to organize your code*
+
+- To install Redux and React-Redux into your application as follows:
+    - `npm install redux`
+    - `npm install react-redux`
+
+- After that create `redux folder` in src folder
+- Create a file named `reducer.js` in the redux folder
+- cut out the shared data and their data in states {dishes , comments ..etc} from Main Component because main component will obtain the state from Redux Store `removed the shared data and thire states to implement the redux store`
+- put the shared data into the `reducer.js file` in redux folder - > The reason of moving move all that into reducer because this is where they will set up our state.
+
+- initial configuration for state
+```
+ export const initialState = {
+    dishes: DISHES,
+    comments: COMMENTS,
+    promotions: PROMOTIONS,
+    leaders: LEADERS
+};
+```
+-  Create a reducer function (pure function) , This reducer function is going to receive the current state, and then an action. - > we cannot modify the state directly here in the reducer, we can only do an immutable change and then return an updated version of the state from this reducer.
+
+- Create another file named `configureStore.js`
+- import the createStore from redux - > `import {createStore} from 'redux';` It allows us to create the Redux Store
+- import  reducer and initialState - > `import { Reducer, initialState } from './reducer'` that we exported both of these from the reducer.js
+
+- Create function ConfigureStore , when you configure a store you will need to create the store
+- To create `Redux Store` use `createStore` itself that takes two parameters (`reducer` and `initialState` if required) and then `return` the store
+
+- Then Update the application - > import the `provider` in APP Component from `react redux` - > `import { Provider } from 'react-redux';`
+
+- Import `ConfigureStore` from redux folder and configure the application by define `const store = ConfigureStore();`
+
+- surround the React application with provider that we imported and send the store variable as a props to this provider 
+
+```
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>
+
+```
+**So, when I do this, my Store, React Store becomes available to all the components within my React application.**
+
+**if we are making use of the react-router, we also need to import this withRouter from reactor-router-dom, because that will be required for configuring my React Component to connect to Redux.**
+
+- import the connect from react-redux -> `import { connect } from 'react-redux';` in the container component which is the main component in our case 
+
+**Note : I connect my main components because this is the component where I was earlier holding the state of my application, now this main component needs to go and obtain that state from the Redux Store.**
+
+- So I need to connect this component to my Redux Store and I also need to define the mapStateToProps function which obtains the state as a parameter like this 
+
+```
+
+//will map the Redux Store's state into props that will become available to my component.
+
+// map all the state , the same way that we did it in state before convert to redux ..
+// for example dishes will become available from my Redux Store's state..
+//this state that we am obtaining here (in header) is the state from my Redux Store.
+
+const mapStateToProps = state => {
+
+    //These are derived from the Redux's Stores by connecting this component to the Redux Store.
+    return {
+        dishes: state.dishes,        
+        comments: state.comments,   
+        promotions: state.promotions,
+        leaders: state.leaders
+    }
+}
+
+```
+
+- To connect the component to the Redux Store go to the export defualt statment and round it with connect and withRouter(only if u applied react router dom) - > `export default withRouter(connect(mapStateToProps)(Main));`
+
+- after that change any `this.state` to `this.props` because now our data is inside props (we export our state from redux store as a props to our main component)
+
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
 
 
