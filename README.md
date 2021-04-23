@@ -346,6 +346,18 @@ const mapStateToProps = state => {
 
 - after that change any `this.state` to `this.props` because now our data is inside props (we export our state from redux store as a props to our main component)
 
+
+--------------------------------------------------------------------------------------
+
+**React Redux Form**
+
+- install react redux form `npm install react-redux-form`
+- to use redux form import `Control` and `LocalForm` `Errors`
+- in react redux form we `dont need the state` to store our form application because the state will become managed by react-redux-form
+- we don't need the `handleInputChange` anymore because that is also going to be managed automatically by react-redux-form
+-also the `handlerBlur` is not needed because that will also be taken care of by react-redux-form and the `valiate` too.
+
+
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
 
 
