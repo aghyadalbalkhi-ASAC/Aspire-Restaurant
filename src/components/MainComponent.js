@@ -64,7 +64,6 @@ class Main extends Component {
         );
 
     };
-        console.log('main',this.props.leaders)
         return (
             <>
                 <div>

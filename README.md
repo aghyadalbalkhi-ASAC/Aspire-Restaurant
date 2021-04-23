@@ -376,7 +376,9 @@ const mapStateToProps = state => {
 
 **Note : No need to handleInputChange or anything**
 
+**Redux Form :** [React Redux Form](https://davidkpiano.github.io/react-redux-form/docs.html)
 
+**To use Modal:** [Modal Example](https://reactstrap.github.io/components/modals/)
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
 
 
