@@ -356,6 +356,25 @@ const mapStateToProps = state => {
 - in react redux form we `dont need the state` to store our form application because the state will become managed by react-redux-form
 - we don't need the `handleInputChange` anymore because that is also going to be managed automatically by react-redux-form
 -also the `handlerBlur` is not needed because that will also be taken care of by react-redux-form and the `valiate` too.
+- insted of using `<Form>` we will use `<LocalForm>` and insted of `<input>` we will ust `Control.text` with `model`
+
+```
+
+<LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+    <Row className="form-group">
+        <Label htmlFor="firstname" md={2}>First Name</Label>
+            <Col md={10}>
+            <Control.text model=".firstname" id="firstname" name="firstname"
+                placeholder="First Name"
+                className="form-control" // Bootstrap class
+                />
+            </Col>
+    </Row>
+</LocalForm>
+
+```
+
+**Note : No need to handleInputChange or anything**
 
 
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
