@@ -380,7 +380,12 @@ const mapStateToProps = state => {
 
 **To use Modal:** [Modal Example](https://reactstrap.github.io/components/modals/)
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
+-------------------------------------------------------------------------------
+**Redux Actions**
 
+*Redux actions are payloads of information that are sent from your application to the store in order to effect any change in the store's ticket.*
+
+*we can split our Reducer into multiple simpler Reducers, and then combine them together to form the overall Reducer that manages the global state.*
 
 
 ## Contact Info : 
