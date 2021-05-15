@@ -22,6 +22,7 @@ export const addComment =  (dishId,rating,author,comment) => ({
     }
 });
 
+// its a Thunk  | function call function 
 export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));

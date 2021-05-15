@@ -389,6 +389,14 @@ const mapStateToProps = state => {
 *we can split our Reducer into multiple simpler Reducers, and then combine them together to form the overall Reducer that manages the global state.*
 
 
+**Note: Continue the Redux Explition on the Redux.md file**
+
+------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 ## Contact Info : 
 **Please Feel Free To Contact Me When You Need help ^_^**
 * [www.facebook.com/aghyadalbalkhi](www.facebook.com/aghyadalbalkhi)

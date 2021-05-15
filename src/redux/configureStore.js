@@ -1,4 +1,6 @@
 import {createStore , combineReducers,applyMiddleware} from 'redux';
+import { createForms } from 'react-redux-form';
+import { InitialFeedback } from './forms';
 
 //reducers
 // we have split the management of state into different reducers that manage partial state
@@ -33,7 +35,10 @@ export const ConfigureStore = () => {
             dishes:Dishes,
             comments:Comments,
             leaders:Leaders,
-            promotions:Promotions
+            promotions:Promotions,
+            ...createForms({
+                feedback: InitialFeedback
+            })
         }),applyMiddleware(thunk,logger)
     );
 
