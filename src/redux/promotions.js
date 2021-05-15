@@ -1,5 +1,6 @@
+//This file is about create a reducer function for PROMOTIONS Data
 
-// Import promotions Data from dishes Component 
+// Import promotions Data from PROMOTIONS Component 
 
 import { PROMOTIONS } from '../shared/promotions';
 

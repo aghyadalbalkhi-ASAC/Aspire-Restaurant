@@ -1,17 +1,25 @@
 //This file is about create a reducer function for Dishes Data
 
+import * as ActionTypes from './ActionTypes';
 
-// Import Dishes Data from dishes Component 
-import { DISHES } from '../shared/dishes'; 
+
 
 // export the reducer Dishes function where it take two parameters -> the state (the defualt is DISHES) and actions 
 // it will return 
-export const Dishes = (state = DISHES, action ) => {
+export const Dishes = (state = { isLoading: true,
+    errMess: null,
+    dishes:[]}, action) => {
+    switch (action.type) {
+        case ActionTypes.ADD_DISHES:
+            return {...state, isLoading: false, errMess: null, dishes: action.payload};
 
-    switch(action.type){
-        
+        case ActionTypes.DISHES_LOADING:
+            return {...state, isLoading: true, errMess: null, dishes: []}
+
+        case ActionTypes.DISHES_FAILED:
+            return {...state, isLoading: false, errMess: action.payload};
+
         default:
             return state;
     }
-
-}
+};

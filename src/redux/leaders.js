@@ -1,3 +1,6 @@
+//This file is about create a reducer function for LEADERS Data
+
+
 // Data Shared Component
 import { LEADERS } from '../shared/leaders';
 

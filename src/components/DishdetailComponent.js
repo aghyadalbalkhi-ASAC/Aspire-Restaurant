@@ -8,6 +8,7 @@ import React , {Component}  from 'react';
 import { Card, CardImg, CardText, CardBody,CardTitle, Breadcrumb, BreadcrumbItem,Button,Col, Row,Modal,ModalHeader,ModalBody,Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import {Control, LocalForm,Errors} from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 
 
@@ -180,35 +181,54 @@ const Dishdetail =(props) => {
             // render the dish object that come from presentional Component as a props 
             // Note that we applied the Bootstrap so we render the deatils inside the div row and 
             // the container div is located on Menu Compnenet
-            
-            return(
-                <div className="container">
-                    <div className="row">
-                        <Breadcrumb>
-                            <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-                            <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
-                        </Breadcrumb>
-                        <div className="col-12">
-                            <h3>{props.dish.name}</h3>
-                            <hr />
-                        </div>                
-                    </div>
-                    <div className="row">
-                        <div className="col-12 col-md-5 m-1">
-                            <RenderDish dish={props.dish}/>
-                        </div>
-                        <div className="col-12 col-md-5 m-1">
-                            <RenderComments comments={props.comments}
-                            addComment = {props.addComment}
-                            dishId = {props.dish.id}
-                            />
 
+            if (props.isLoading) {
+                return(
+                    <div className="container">
+                        <div className="row">            
+                            <Loading />
                         </div>
-                        
                     </div>
-                </div>
-                
-            );
+                );
+            }
+            else if (props.errMess) {
+                return(
+                    <div className="container">
+                        <div className="row">            
+                            <h4>{props.errMess}</h4>
+                        </div>
+                    </div>
+                );
+            }
+            else{
+                return(
+                    <div className="container">
+                        <div className="row">
+                            <Breadcrumb>
+                                <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                                <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                            </Breadcrumb>
+                            <div className="col-12">
+                                <h3>{props.dish.name}</h3>
+                                <hr />
+                            </div>                
+                        </div>
+                        <div className="row">
+                            <div className="col-12 col-md-5 m-1">
+                                <RenderDish dish={props.dish}/>
+                            </div>
+                            <div className="col-12 col-md-5 m-1">
+                                <RenderComments comments={props.comments}
+                                addComment = {props.addComment}
+                                dishId = {props.dish.id}
+                                />
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                );
+            }
         }
 
 
