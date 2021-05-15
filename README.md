@@ -25,6 +25,7 @@
         npm install bootstrap 
         npm install reactstrap 
         npm install react-popper 
+        npm install react-bootstrap
 
 ```
 
